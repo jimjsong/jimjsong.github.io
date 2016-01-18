@@ -1,0 +1,1 @@
+var foundationRoutes = [{"name":"test2","url":"/test2","path":"templates/test2.html"},{"name":"home","url":"/","animationIn":"fadeIn","animationOut":"fadeOut","controller":"CompCalcCtrl as vm","path":"templates/home.html"}]; 
