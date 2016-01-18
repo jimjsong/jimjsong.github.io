@@ -51,6 +51,9 @@
   font-weight: bold;
   color: green;
  }
+ textarea {
+   height:10px;
+ }
 </style>
 
 <div>
@@ -67,7 +70,7 @@
    <div class="medium-2 grid-content cclabel" >Salary- Enter Annual Salary:</div>
    <div class="medium-1 grid-content"></div>
    <div class="medium-1 grid-content">
-     <input type="number" class="ccInput"
+     <input type="number" class="ccInput" style="height:10px; font-size:8px;"
          ng-model="vm.tabs[0].annualSalary"
          ng-change="vm.updateTaxRate(vm.tabs[0])">
    </div>
@@ -78,7 +81,7 @@
   </div>
   <div class="grid-block">
    <div class="medium-2 grid-content cclabel">PTO in Weeks off:</div>
-   <div class="medium-1 grid-content"><div style="margin-left:30px"><input class="ccInput" type="number" ng-model="vm.tabs[0].ptoWksOff" ></div></div>
+   <div class="medium-1 grid-content"><div style="margin-left:30px"><input class="ccInput" style="height:10px" type="number" ng-model="vm.tabs[0].ptoWksOff" ></div></div>
    <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff = vm.tabs[0].ptoWksOff* vm.tabs[0].annualSalary/2080 * 40 | currency}}</div>
    <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /12 | currency}}</div>
    <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /24 | currency}}</div>
