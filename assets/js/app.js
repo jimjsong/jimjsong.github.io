@@ -59,20 +59,33 @@
       // Add tab to the end of the array
       vm.addTab = function () {
         vm.tabs.push({
-          title: 'Job ' + counter,
-          description: "Decription " + counter,
-          annualSalary: 10000 * counter,
-          ptoWksOff: counter,
-          bonusMiscBen: 500 * counter,
-          companyMatch: 70 + 10 * counter,
-          four01kContribPercentage: 3 + counter,
-          taxRate: 0,
-          healthMP: 300 * counter,
-          commuteDist: 10 * counter,
-          annual401KCompanyMatch: 0,
-          annualFour01kContrib: 10000 * counter * (3 + counter) /10000
+          title: 'Job 1',
+          annualSalary: 65000,
+          ptoWksOff: 2,
+          bonusMiscBen: 2000,
+          companyMatch: 100,
+          four01kContribPercentage: 3,
+          taxRate: .25,
+          healthMP: 400,
+          commuteDist: 10,
+          annual401KCompanyMatch: 1950,
+          annualFour01kContrib: 1950
         });
-        counter++;
+        vm.tabs.push({
+          title: 'Job 2',
+          annualSalary: 70000,
+          ptoWksOff: 2,
+          bonusMiscBen: 2000,
+          companyMatch: 50,
+          four01kContribPercentage: 3,
+          taxRate: .25,
+          healthMP: 200,
+          commuteDist: 15,
+          annual401KCompanyMatch: 1050,
+          annualFour01kContrib: 1050,
+          commuteDiff: 2
+        });
+
       };
 
       // Remove tab by index
@@ -84,14 +97,7 @@
 
       // Initialize the scope functions
 
-      // For demonstration add 10 tabs
-      for (var i = 0; i < 3; i++) {
-        vm.addTab();
-        vm.updateTaxRate(vm.tabs[i]);
-        vm.updateCommuteDist(vm.tabs[i]);
-        vm.four01kContribPercentageUpdate(vm.tabs[i]);
-      }
-
+      vm.addTab();
 
     }])  // Ensure you don't end in a semicolon, because more
     // actions are to follow.

@@ -22,7 +22,7 @@
     background-color: lightskyblue !important;
     text-align:right;
   }
-  .ccDeductions {
+  .ccDeductionsLabel {
     color: red;
     text-align: right;
   }
@@ -115,7 +115,7 @@
         <div class="medium-1 "></div>
       </div>
       <div class="grid-block">
-        <div class="medium-2 ccCalLabel ccDeductions" style="padding-bottom:20px">Taxes:</div>
+        <div class="medium-2 ccCalLabel ccDeductionsLabel" style="padding-bottom:20px">Taxes:</div>
         <div class="medium-1 ccCalLabel">{{($parent.tab.taxRate * 100 | number:1) + ' %'}}</div>
         <div class="medium-1 ccCalLabel">{{$parent.tab.annualSalary * $parent.tab.taxRate | currency}}</div>
         <div class="medium-1 ccCalLabel">{{$parent.tab.annualSalary * $parent.tab.taxRate/12 | currency}}</div>
@@ -124,7 +124,7 @@
         <div class="medium-1 ccCalLabel">{{$parent.tab.annualSalary * $parent.tab.taxRate/2080 | currency}}</div>
       </div>
       <div class="grid-block">
-        <div class="medium-2 cclabel ccDeductions">Health Benefits monthly premium:</div>
+        <div class="medium-2 cclabel ccDeductionsLabel">Health Benefits monthly premium:</div>
         <div class="medium-1 ">
           <div style="margin-left:30px">
             <input class="ccInput" type="number" ng-model="$parent.tab.healthMP"/>
@@ -138,7 +138,7 @@
       </div>
 
       <div class="grid-block">
-        <div class="medium-2 cclabel ccDeductions">Commute one way in miles (wear & tear):</div>
+        <div class="medium-2 cclabel ccDeductionsLabel">Commute one way in miles (wear & tear):</div>
         <div class="medium-1 ">
           <div style="margin-left:30px">
             <input class="ccInput" type="number" ng-model="$parent.tab.commuteDist" ng-change="$parent.vm.updateCommuteDist($parent.tab)"/>

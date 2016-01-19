@@ -1,321 +1,346 @@
+---
+name: home
+url: /
+animationIn: fadeIn
+animationOut: fadeOut
+controller: CompCalcCtrl as vm
+---
 <style type="text/css">
 
  .cclabel {
   text-align: right;
-  padding-top: 15px;
+  padding-top: 0px;
    font-size: 8px;
  }
  .ccColumnHeader {
   text-align: right;
   font-weight: bold;
-  font-size: 8px;
+  font-size: 10px;
   padding-bottom: 5px;
   padding-top: 5px;
  }
  .ccCalLabel {
   text-align: right;
-  padding-top: 15px;
+  padding-top: 0px;
    font-size: 8px;
+   height:11px;
  }
  .ccTotal {
-  font-size: 12px;
+  font-size: 9px;
   font-weight: bold;
    padding-top:5px;
    padding-bottom:5px;
  }
  .ccInput {
   background-color: lightskyblue !important;
-  text-align:left;
+  text-align:right;
   margin:0px !important;
    padding-top:0px;
    padding-bottom: 0px;
    margin-top:0px;
    margin-bottom: 0px;
    font-size: 8px;
+   height: 10px;
  }
- .ccDeductions {
+ .ccInputSmall {
+   background-color: lightskyblue !important;
+   text-align:left;
+   margin:0px !important;
+   padding-top:0px;
+   padding-bottom: 0px;
+   margin-top:0px;
+   margin-bottom: 0px;
+   font-size: 8px;
+ }
+ .ccDeductionsLabel {
   color: red;
   text-align: right;
-   font-size: 12px;
+   font-size: 8px;
+   height: 11px;
  }
  .ccDeductionsTitle {
   color:red;
   font-weight:bold;
   text-align:right;
-   margin-left:5px;
-   margin-top:5px;
-   font-size: 12px;
+   font-size: 10px;
+   padding-bottom: 5px;
+   padding-top: 5px;
  }
  .ccTakeHome {
   font-size: 12px;
   font-weight: bold;
   color: green;
  }
- textarea {
-   height:10px;
+ .ccTotalComp {
+   background-color:lightgreen;
+   vertical-align: middle;
+ }
+ input {
+   height:10px !important;
+   font-size: 8px !important;
+   padding:0  !important;
+   vertical-align: middle !important;
  }
 </style>
 
 <div>
   <div class="grid-block">
-    <div class=" grid-content medium-2 ccColumnHeader">Job 1</div>
-    <div class=" grid-content medium-1 ccColumnHeader"></div>
-    <div class=" grid-content medium-1 ccColumnHeader">Annual </div>
-    <div class=" grid-content medium-1 ccColumnHeader">Monthly</div>
-    <div class=" grid-content medium-1 ccColumnHeader">Bi-Monthly</div>
-    <div class=" grid-content medium-1 ccColumnHeader">Bi-Weekly</div>
-    <div class=" grid-content medium-1 ccColumnHeader">Hourly</div>
+    <div class=" grid-content small-2 medium-2 ccColumnHeader">Job 1</div>
+    <div class=" grid-content small-1 medium-1 ccColumnHeader"></div>
+    <div class=" grid-content small-1 medium-1 ccColumnHeader">Annual </div>
+    <div class=" grid-content small-1 medium-1 ccColumnHeader">Monthly</div>
+    <div class=" grid-content small-1 medium-1 ccColumnHeader">Bi-Monthly</div>
+    <div class=" grid-content small-1 medium-1 ccColumnHeader">Bi-Weekly</div>
+    <div class=" grid-content small-1 medium-1 ccColumnHeader">Hourly</div>
   </div>
   <div class="grid-block" >
-   <div class="medium-2 grid-content cclabel" >Salary- Enter Annual Salary:</div>
-   <div class="medium-1 grid-content"></div>
-   <div class="medium-1 grid-content">
-     <input type="number" class="ccInput" style="height:10px; font-size:8px;"
+   <div class= "small-2 medium-2 grid-content cclabel" >Annual Salary:</div>
+   <div class="small-1 medium-1 grid-content" style="height:0px"></div>
+   <div class="small-1 medium-1 grid-content">
+     <input type="number" class="ccInput"
          ng-model="vm.tabs[0].annualSalary"
          ng-change="vm.updateTaxRate(vm.tabs[0])">
    </div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary/2080 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary/2080 | currency}}</div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel">PTO in Weeks off:</div>
-   <div class="medium-1 grid-content"><div style="margin-left:30px"><input class="ccInput" style="height:10px" type="number" ng-model="vm.tabs[0].ptoWksOff" ></div></div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff = vm.tabs[0].ptoWksOff* vm.tabs[0].annualSalary/2080 * 40 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /2080 | currency}}</div>
+   <div class= "small-2 medium-2 grid-content cclabel">PTO (Weeks off):</div>
+   <div class="small-1 medium-1 grid-content"><input class="ccInput" style="height:10px" type="number" ng-model="vm.tabs[0].ptoWksOff" ></div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff = vm.tabs[0].ptoWksOff* vm.tabs[0].annualSalary/2080 * 40 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /2080 | currency}}</div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel">Bonuses & Miscellaneous Benefits:</div>
-   <div class="medium-1 grid-content" ></div>
-   <div class="medium-1 grid-content"><input class="ccInput" type="number" ng-model="vm.tabs[0].bonusMiscBen" /></div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].bonusMiscBen/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].bonusMiscBen/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].bonusMiscBen/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].bonusMiscBen/2080 | currency}}</div>
+   <div class="small-2 medium-2 grid-content cclabel">Bonuses & Miscellaneous Benefits ($):</div>
+   <div class="small-1 medium-1 grid-content" ></div>
+   <div class="small-1 medium-1 grid-content"><input class="ccInput" type="number" ng-model="vm.tabs[0].bonusMiscBen" /></div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].bonusMiscBen/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].bonusMiscBen/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].bonusMiscBen/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].bonusMiscBen/2080 | currency}}</div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel">Company 401K Match:</div>
-   <div class="medium-1 grid-content " ><div style="margin-left:30px"><input class="ccInput" type="number" ng-model="vm.tabs[0].companyMatch"></div></div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch = vm.tabs[0].companyMatch /100 * vm.tabs[0].annualSalary * vm.tabs[0].four01kContribPercentage /100| currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch/2080 | currency}}</div>
+   <div class="small-2 medium-2 grid-content cclabel">Company 401K Match (%):</div>
+   <div class="small-1 medium-1 grid-content " ><input class="ccInput" type="number" ng-model="vm.tabs[0].companyMatch"></div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch = vm.tabs[0].companyMatch /100 * vm.tabs[0].annualSalary * vm.tabs[0].four01kContribPercentage /100| currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch/2080 | currency}}</div>
   </div>
-  <div class="grid-block" style="background-color:lightgreen;vertical-align: middle">
-   <div class="medium-2 grid-content cclabel ccTotal">Total Compensation:</div>
-   <div class="medium-1 grid-content ccCalLabel"></div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation = annualPaidTimeOff + vm.tabs[0].annualSalary + vm.tabs[0].bonusMiscBen + vm.tabs[0].annual401KCompanyMatch | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/2080 | currency}}</div>
+  <div class="grid-block ccTotalComp" >
+   <div class= "small-2 medium-2 grid-content cclabel ccTotal">Total Compensation:</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel"></div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation = annualPaidTimeOff + vm.tabs[0].annualSalary + vm.tabs[0].bonusMiscBen + vm.tabs[0].annual401KCompanyMatch | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/2080 | currency}}</div>
   </div>
 </div>
 
-<div class="vertical grid-block" style="border-color:red;border-width:1px;border-style: solid;">
+<div>
   <div class="grid-block" >
-   <div class="medium-2 grid-content ccDeductionsTitle">DEDUCTIONS</div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
+   <div class= "small-2 medium-2 grid-content ccDeductionsTitle">JOB 1 DEDUCTIONS</div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content ccCalLabel ccDeductions" style="padding-bottom:20px">Taxes:</div>
-   <div class="medium-1 grid-content ccCalLabel">{{(vm.tabs[0].taxRate * 100 | number:1) + ' %'}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate/2080 | currency}}</div>
+   <div class= "small-2 medium-2 grid-content ccDeductionsLabel">Taxes:</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{(vm.tabs[0].taxRate * 100 | number:1) + ' %'}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].annualSalary * vm.tabs[0].taxRate/2080 | currency}}</div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel ccDeductions">Health Benefits monthly premium:</div>
-   <div class="medium-1 grid-content">
-    <div style="margin-left:30px">
+   <div class= "small-2 medium-2 grid-content cclabel ccDeductionsLabel">Health Benefits premium (monthly):</div>
+   <div class="small-1 medium-1 grid-content">
      <input class="ccInput" type="number" ng-model="vm.tabs[0].healthMP"/>
-    </div>
-   </div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP * 12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP |currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP /2 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP * 12 / 26| currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP * 12 /2080 | currency}}</div>
+  </div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP * 12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP |currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP /2 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP * 12 / 26| currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[0].healthMP * 12 /2080 | currency}}</div>
   </div>
 
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel ccDeductions">Commute one way in miles (wear & tear):</div>
-   <div class="medium-1 grid-content ">
-    <div style="margin-left:30px">
+   <div class= "small-2 medium-2 grid-content cclabel ccDeductionsLabel">Commute one way (miles):</div>
+   <div class="small-1 medium-1 grid-content ">
      <input class="ccInput" type="number" ng-model="vm.tabs[0].commuteDist" ng-change="vm.updateCommuteDist(vm.tabs[0])"/>
-    </div>
    </div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost = vm.tabs[0].commuteDist * 10 * 0.575 * 48 |currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost / 12 |currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost / 24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost / 26| currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost / 2080 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.annualcommuteCost = vm.tabs[0].commuteDist * 10 * 0.575 * 48 |currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.annualcommuteCost / 12 |currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.annualcommuteCost / 24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.annualcommuteCost / 26| currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.annualcommuteCost / 2080 | currency}}</div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel">401K Contribution:</div>
-   <div class="medium-1 grid-content ">
-    <div style="margin-left:30px">
+   <div class="small-2 medium-2 grid-content cclabel">401K Contribution (%):</div>
+   <div class="small-1 medium-1 grid-content ">
      <input class="ccInput" type="number" ng-model="vm.tabs[0].four01kContribPercentage" ng-change="vm.four01kContribPercentageUpdate(vm.tabs[0])"/>
-    </div>
    </div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib = vm.tabs[0].four01kContribPercentage* vm.tabs[0].annualSalary/100 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 26| currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 2080 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib = vm.tabs[0].four01kContribPercentage* vm.tabs[0].annualSalary/100 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 26| currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 2080 | currency}}</div>
   </div>
 </div>
-<div class="grid-block" style="border-color:green;border-width:2px;border-style: solid;">
-  <div class="grid-block" style="vertical-align: middle">
-   <div class="medium-2 grid-content cclabel ccTakeHome">Actual Take Home:</div>
-   <div class="medium-1 grid-content ccCalLabel"></div>
-   <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome = totalCompensation - vm.tabs[0].annualSalary * vm.tabs[0].taxRate -vm.tabs[0].healthMP * 12 - annualcommuteCost -annualFour01kContrib| currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/2080 | currency}}</div>
+<div>
+  <div class="grid-block">
+   <div class= "small-2 medium-2 grid-content cclabel ccTakeHome">Actual Take Home:</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel"></div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome = totalCompensation - vm.tabs[0].annualSalary * vm.tabs[0].taxRate -vm.tabs[0].healthMP * 12 - vm.annualcommuteCost - annualFour01kContrib| currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/2080 | currency}}</div>
   </div>
 </div>
-<div class="grid-block" style="border-color:black;border-width:2px;border-style: solid;marign-right:5px;">
- <div class=" grid-content medium-2 ccColumnHeader">Job 2</div>
- <div class=" grid-content medium-1 ccColumnHeader"></div>
- <div class=" grid-content medium-1 ccColumnHeader">Annual </div>
- <div class=" grid-content medium-1 ccColumnHeader">Monthly</div>
- <div class=" grid-content medium-1 ccColumnHeader">Bi-Monthly</div>
- <div class=" grid-content medium-1 ccColumnHeader">Bi-Weekly</div>
- <div class=" grid-content medium-1 ccColumnHeader">Hourly</div>
-</div>
-<div class="vertical grid-block" style="border-color:black;border-width:2px;border-style: solid;marign-right:5px;">
+<div class="grid-block" style="background-color:#00558b">&nbsp;</div>
+<div>
+  <div class="grid-block">
+   <div class=" grid-content small-2 medium-2 ccColumnHeader">Job 2</div>
+   <div class=" grid-content small-1 medium-1 ccColumnHeader"></div>
+   <div class=" grid-content small-1 medium-1 ccColumnHeader">Annual </div>
+   <div class=" grid-content small-1 medium-1 ccColumnHeader">Monthly</div>
+   <div class=" grid-content small-1 medium-1 ccColumnHeader">Bi-Monthly</div>
+   <div class=" grid-content small-1 medium-1 ccColumnHeader">Bi-Weekly</div>
+   <div class=" grid-content small-1 medium-1 ccColumnHeader">Hourly</div>
+  </div>
   <div class="grid-block" >
-   <div class="medium-2 grid-content cclabel" >Salary- Enter Annual Salary:</div>
-   <div class="medium-1 grid-content"></div>
-   <div class="medium-1 grid-content">
+   <div class= "small-2 medium-2 grid-content cclabel" >Annual Salary:</div>
+   <div class="small-1 medium-1 grid-content"></div>
+   <div class="small-1 medium-1 grid-content">
     <input type="number" class="ccInput"
         ng-model="vm.tabs[1].annualSalary"
         ng-change="vm.updateTaxRate(vm.tabs[1])">
    </div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary/2080 | currency}}</div>
-  </div>
-
-  <div class="grid-block">
-   <div class="medium-2 grid-content cclabel">PTO in Weeks off:</div>
-   <div class="medium-1 grid-content"><div style="margin-left:30px"><input class="ccInput" type="number" ng-model="vm.tabs[1].ptoWksOff" ></div></div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff = vm.tabs[1].ptoWksOff* vm.tabs[1].annualSalary/2080 * 40 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /2080 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary/2080 | currency}}</div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel">Bonuses & Miscellaneous Benefits:</div>
-   <div class="medium-1 grid-content" ></div>
-   <div class="medium-1 grid-content"><input class="ccInput" type="number" ng-model="vm.tabs[1].bonusMiscBen" /></div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].bonusMiscBen/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].bonusMiscBen/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].bonusMiscBen/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].bonusMiscBen/2080 | currency}}</div>
+   <div class= "small-2 medium-2 grid-content cclabel">PTO (Weeks off):</div>
+   <div class="small-1 medium-1 grid-content"><input class="ccInput" type="number" ng-model="vm.tabs[1].ptoWksOff" ></div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff = vm.tabs[1].ptoWksOff* vm.tabs[1].annualSalary/2080 * 40 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualPaidTimeOff /2080 | currency}}</div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel">Company 401K Match:</div>
-   <div class="medium-1 grid-content " ><div style="margin-left:30px"><input class="ccInput" type="number" ng-model="vm.tabs[1].companyMatch"></div></div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch = vm.tabs[1].companyMatch /100 * vm.tabs[1].annualSalary * vm.tabs[1].four01kContribPercentage /100| currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualCompanyMatch/2080 | currency}}</div>
+   <div class= "small-2 medium-2 grid-content cclabel">Bonuses & Miscellaneous Benefits ($):</div>
+   <div class="small-1 medium-1 grid-content" ></div>
+   <div class="small-1 medium-1 grid-content"><input class="ccInput" type="number" ng-model="vm.tabs[1].bonusMiscBen" /></div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].bonusMiscBen/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].bonusMiscBen/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].bonusMiscBen/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].bonusMiscBen/2080 | currency}}</div>
   </div>
-  <div class="grid-block" style="border-color:black;border-width:2px;border-style: solid;marign-right:5px;">
-   <div class="medium-2 grid-content cclabel ccTotal">Total Compensation:</div>
-   <div class="medium-1 grid-content ccCalLabel"></div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation = annualPaidTimeOff + vm.tabs[1].annualSalary + vm.tabs[1].bonusMiscBen + vm.tabs[1].annual401KCompanyMatch | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation/2080 | currency}}</div>
+  <div class="grid-block">
+   <div class= "small-2 medium-2 grid-content cclabel">Company 401K Match (%):</div>
+   <div class="small-1 medium-1 grid-content " ><input class="ccInput" type="number" ng-model="vm.tabs[1].companyMatch"></div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch = vm.tabs[1].companyMatch /100 * vm.tabs[1].annualSalary * vm.tabs[1].four01kContribPercentage /100| currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualCompanyMatch/2080 | currency}}</div>
+  </div>
+  <div class="grid-block ccTotalComp">
+   <div class= "small-2 medium-2 grid-content cclabel ccTotal">Total Compensation:</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel"></div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation1 = annualPaidTimeOff + vm.tabs[1].annualSalary + vm.tabs[1].bonusMiscBen + vm.tabs[1].annual401KCompanyMatch | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation1/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation1/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation1/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel ccTotal">{{totalCompensation1/2080 | currency}}</div>
   </div>
 </div>
-<div class="vertical grid-block" style="border-color:red;border-width:1px;border-style: solid;">
+<div>
   <div class="grid-block">
-   <div class="medium-2 grid-content ccDeductionsTitle" >DEDUCTIONS</div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
-   <div class="medium-1 grid-content "></div>
+   <div class= "small-2 medium-2 grid-content ccDeductionsTitle" >JOB 2 DEDUCTIONS</div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
+   <div class="small-1 medium-1 grid-content "></div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content ccCalLabel ccDeductions" style="padding-bottom:20px">Taxes:</div>
-   <div class="medium-1 grid-content ccCalLabel">{{(vm.tabs[1].taxRate * 100 | number:1) + ' %'}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate/12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate/24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate/26 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate/2080 | currency}}</div>
+   <div class= "small-2 medium-2 grid-content ccCalLabel ccDeductionsLabel">Taxes:</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{(vm.tabs[1].taxRate * 100 | number:1) + ' %'}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate/12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate/24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate/26 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].annualSalary * vm.tabs[1].taxRate/2080 | currency}}</div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel ccDeductions">Health Benefits monthly premium:</div>
-   <div class="medium-1 grid-content">
-    <div style="margin-left:30px">
+   <div class= "small-2 medium-2 grid-content cclabel ccDeductionsLabel">Health Benefits premium (monthly):</div>
+   <div class="small-1 medium-1 grid-content">
      <input class="ccInput" type="number" ng-model="vm.tabs[1].healthMP"/>
-    </div>
    </div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP * 12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP |currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP /2 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP * 12 / 26| currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP * 12 /2080 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP * 12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP |currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP /2 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP * 12 / 26| currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{vm.tabs[1].healthMP * 12 /2080 | currency}}</div>
   </div>
-
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel ccDeductions">Commute one way in miles (wear & tear):</div>
-   <div class="medium-1 grid-content ">
-    <div style="margin-left:30px">
+   <div class= "small-2 medium-2 grid-content cclabel ccDeductionsLabel">Commute one way (miles):</div>
+   <div class="small-1 medium-1 grid-content ">
      <input class="ccInput" type="number" ng-model="vm.tabs[1].commuteDist" ng-change="vm.updateCommuteDist(vm.tabs[1])"/>
-    </div>
    </div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost = vm.tabs[1].commuteDist * 10 * 0.575 * 48 |currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost / 12 |currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost / 24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost / 26| currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualcommuteCost / 2080 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteCost1 = vm.tabs[1].commuteDist * 10 * 0.575 * 48 |currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteCost1 / 12 |currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteCost1 / 24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteCost1 / 26| currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteCost1 / 2080 | currency}}</div>
   </div>
   <div class="grid-block">
-   <div class="medium-2 grid-content cclabel">401K Contribution:</div>
-   <div class="medium-1 grid-content ">
-    <div style="margin-left:30px">
-     <input class="ccInput" type="number" ng-model="vm.tabs[1].four01kContribPercentage" ng-change="vm.four01kContribPercentageUpdate(vm.tabs[1])"/>
+    <div class= "small-2 medium-2 grid-content cclabel ccDeductionsLabel">Weekly commute Difference from job 1:</div>
+    <div class="small-1 medium-1 grid-content ">
+      <input class="ccInput" type="number" ng-model="vm.tabs[1].commuteDiff"/>
     </div>
+    <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteDiffCost = vm.tabs[1].commuteDiff * vm.tabs[1].annualSalary/2080 * 48 |currency}}</div>
+    <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteDiffCost / 12 |currency}}</div>
+    <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteDiffCost / 24 | currency}}</div>
+    <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteDiffCost / 26| currency}}</div>
+    <div class="small-1 medium-1 grid-content ccCalLabel">{{annualcommuteDiffCost / 2080 | currency}}</div>
+  </div>
+  <div class="grid-block">
+   <div class= "small-2 medium-2 grid-content cclabel">401K Contribution (%):</div>
+   <div class="small-1 medium-1 grid-content ">
+     <input class="ccInput" type="number" ng-model="vm.tabs[1].four01kContribPercentage" ng-change="vm.four01kContribPercentageUpdate(vm.tabs[1])"/>
    </div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib = vm.tabs[1].four01kContribPercentage* vm.tabs[1].annualSalary/100 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 12 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 24 | currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 26| currency}}</div>
-   <div class="medium-1 grid-content ccCalLabel">{{annualFour01kContrib / 2080 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib1 = vm.tabs[1].four01kContribPercentage* vm.tabs[1].annualSalary/100 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib1 / 12 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib1 / 24 | currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib1 / 26| currency}}</div>
+   <div class="small-1 medium-1 grid-content ccCalLabel">{{annualFour01kContrib1 / 2080 | currency}}</div>
   </div>
 </div>
 <div class="grid-block">
- <div class="medium-2 grid-content cclabel ccTakeHome">Actual Take Home:</div>
- <div class="medium-1 grid-content ccCalLabel"></div>
- <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome = totalCompensation - vm.tabs[1].annualSalary * vm.tabs[1].taxRate -vm.tabs[1].healthMP * 12 - annualcommuteCost -annualFour01kContrib| currency}}</div>
- <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/12 | currency}}</div>
- <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/24 | currency}}</div>
- <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/26 | currency}}</div>
- <div class="medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome/2080 | currency}}</div>
+ <div class= "small-2 medium-2 grid-content cclabel ccTakeHome">Actual Take Home:</div>
+ <div class="small-1 medium-1 grid-content ccCalLabel"></div>
+ <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome1 = totalCompensation1 - vm.tabs[1].annualSalary * vm.tabs[1].taxRate -vm.tabs[1].healthMP * 12 - annualcommuteCost1 -annualFour01kContrib1 - annualcommuteDiffCost| currency}}</div>
+ <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome1/12 | currency}}</div>
+ <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome1/24 | currency}}</div>
+ <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome1/26 | currency}}</div>
+ <div class="small-1 medium-1 grid-content ccCalLabel ccTakeHome">{{annualTakeHome1/2080 | currency}}</div>
 </div>
--->
+<div class="grid-block" style="background-color:#00558b">&nbsp;</div>
